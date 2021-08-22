@@ -10,7 +10,7 @@ def report_problem(page):
     problem = False
     pageSplit = page.text.splitlines()
     for line in pageSplit:
-        if "website" in line and not "{{" in line and not "[" in line and "http" in line:
+        if "website" in line and not "{{" in line and not "[" in line and not "<!--" in line and "http" in line:
             problem = True
             break
     if problem is True:
