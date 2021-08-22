@@ -34,6 +34,7 @@ def treat_page(page, save):
             print("Would have saved to " + page.title())
 
 for p in dump_parsed:
+    print("test")
     if report_problem(p) is True:
         p = pywikibot.Page(site, p.title)
         if report_problem(p) is True:
