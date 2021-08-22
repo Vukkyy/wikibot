@@ -1,5 +1,6 @@
 import time, os, random, pywikibot
 import pywikibot.xmlreader as xmlreader
+import pywikibot.pagegenerators as pagegenerators
 site = pywikibot.Site()
 headers = {
     'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
@@ -17,7 +18,8 @@ dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os
 print("Parsing dump...")
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
 print("Checking local pages...")
-gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
+gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p) is True)
+gen = pagegenerators.PreloadingGenerator(gen)
 
 def treat_page(page, save):
     pageSplit = page.text.splitlines()
@@ -35,10 +37,7 @@ def treat_page(page, save):
         else:
             print("Would have saved to " + page.title())
 
-print("Starting...")
-print(gen)
 for page in gen:
-    print("Checking " + page.title())
     if report_problem(page) is True:
         print("Treating " + page.title())
         treat_page(page, False)
