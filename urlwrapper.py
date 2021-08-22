@@ -15,7 +15,7 @@ def report_problem(page):
         else:
             return False
 
-dump_file = random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if x.contains("-pages-articles")])
+dump_file = random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x])
 dump_parsed = pywikibot.xmlreader.XmlDump(dump_file).parse()
 gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
 gen = pywikibot.pagegenerators.PreloadingGenerator(gen)
