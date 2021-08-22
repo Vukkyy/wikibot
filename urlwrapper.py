@@ -37,6 +37,7 @@ def treat_page(page, save):
 
 for page in gen:
     if report_problem(page) is True:
+        print("Treating " + page.title())
         treat_page(page, False)
         time.sleep(5)
     else:
