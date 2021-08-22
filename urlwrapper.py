@@ -13,6 +13,7 @@ def report_problem(page):
         print(line)
         if "website" in line and not "{{" in line and not "[" in line and "http" in line:
             problem = True
+            break
     if problem is True:
         return True
     else:
