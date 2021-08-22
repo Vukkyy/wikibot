@@ -34,6 +34,7 @@ def treat_page(page, save):
             print("Would have saved to " + page.title())
 
 for p in dump_parsed:
+    print("Checking if " + p.title + " should be treated...")
     if report_problem(p) is True:
         print("Checking " + p.title + " online...")
         p = pywikibot.Page(site, p.title)
