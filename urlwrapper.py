@@ -17,7 +17,6 @@ def report_problem(page):
 dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x and os.path.isfile(os.path.join("/public/dumps/public/enwiki/latest", x))])
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
 gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
-gen = pagegenerators.PreloadingGenerator(gen)
 
 def treat_page(page, save):
     pageSplit = page.text.splitlines()
