@@ -25,7 +25,7 @@ def treat_page(page, save):
     pageSplit = page.text.splitlines()
     changed = False
     for index, line in enumerate(pageSplit):
-        if "website" in line and not "{{" in line and not "[" in line and "http" in line:
+        if "website" in line and not "{{" in line and not "[" in line and not "<!--" in line and "http" in line:
             print(line.replace("http", "{{URL|http", 1) + "}}")
             pageSplit[index] = line.replace("http", "{{URL|http", 1) + "}}"
             changed = True
