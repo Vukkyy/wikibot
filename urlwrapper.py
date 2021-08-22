@@ -44,9 +44,7 @@ def treat_page(page, save):
             print("Would have saved to " + page.title())
 
 def not_edge_case(line):
-    if "website" in line:
-        print(line.replace(" ", ""), "|website=" in line.replace(" ", ""))
-    if "|website=" in line.replace(" ", "") and not "*" in line and not "{{" in line and not "[" in line and not "<!--" in line and not "<ref>" in line and not "</ref>" in line and not "url=" in line and not "|" in line and "http" in line:
+    if "|website=" in line.replace(" ", "") and not "*" in line and not "{{" in line and not "[" in line and not "<!--" in line and not "<ref>" in line and not "</ref>" in line and not "url=" in line and "http" in line:
         return True
     else:
         return False
