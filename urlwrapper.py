@@ -1,5 +1,7 @@
-from json import dump
-import time, os, random, requests, pywikibot
+import time
+import os
+import random
+import pywikibot
 site = pywikibot.Site()
 headers = {
     'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
