@@ -2,6 +2,7 @@ import time, os, random, pywikibot
 import pywikibot.xmlreader as xmlreader
 import pywikibot.pagegenerators as pagegenerators
 site = pywikibot.Site()
+site.login()
 headers = {
     'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
 }
