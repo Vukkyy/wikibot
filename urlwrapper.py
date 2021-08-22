@@ -17,7 +17,7 @@ def report_problem(page):
 dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x and x.endswith(".bz2") and not "multistream" in x and os.path.isfile(os.path.join("/public/dumps/public/enwiki/latest", x))])
 print("Parsing dump...")
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
-print("Checking pages...")
+print("Checking local pages...")
 gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
 print("Creating generator...")
 gen = pagegenerators.PreloadingGenerator(gen)
@@ -38,7 +38,9 @@ def treat_page(page, save):
         else:
             print("Would have saved to " + page.title())
 
+print("Starting...")
 for page in gen:
+    print("Checking " + page.title())
     if report_problem(page) is True:
         print("Treating " + page.title())
         treat_page(page, False)
