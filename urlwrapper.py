@@ -45,6 +45,6 @@ for p in dump_parsed:
         if report_problem(p) is True:
             print("Treating " + p.title())
             treat_page(p, False)
-            time.sleep(5)
+            time.sleep(1)
         else:
             print("No problem found on " + p.title())
