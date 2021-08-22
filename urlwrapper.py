@@ -7,8 +7,8 @@ headers = {
 }
 
 def report_problem(page):
-    print(page.text)
     pageSplit = page.text.splitlines()
+    print(pageSplit)
     for line in pageSplit:
         print(line)
         if "website" in line and not "{{" in line and not "[" in line and "http" in line:
