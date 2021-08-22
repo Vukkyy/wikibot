@@ -1,8 +1,6 @@
-import time
-import os
-import random
-import pywikibot
+import time, os, random, pywikibot
 import pywikibot.xmlreader as xmlreader
+import pywikibot.pagegenerators as pagegenerators
 site = pywikibot.Site()
 headers = {
     'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
@@ -19,7 +17,7 @@ def report_problem(page):
 dump_file = random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x])
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
 gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
-gen = pywikibot.pagegenerators.PreloadingGenerator(gen)
+gen = pagegenerators.PreloadingGenerator(gen)
 
 def treat_page(page, save):
     pageSplit = page.text.splitlines()
