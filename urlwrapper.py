@@ -3,9 +3,6 @@ import pywikibot.xmlreader as xmlreader
 import pywikibot.pagegenerators as pagegenerators
 site = pywikibot.Site()
 site.login()
-headers = {
-    'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
-}
 
 dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x and x.endswith(".bz2") and not "multistream" in x and os.path.isfile(os.path.join("/public/dumps/public/enwiki/latest", x))])
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
