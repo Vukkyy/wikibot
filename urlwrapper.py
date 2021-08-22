@@ -1,6 +1,5 @@
 import time, os, random, pywikibot
 import pywikibot.xmlreader as xmlreader
-import pywikibot.pagegenerators as pagegenerators
 site = pywikibot.Site()
 headers = {
     'User-Agent': 'VukkyBotURLWrapper/1.0 - User:Vukky',
@@ -19,8 +18,6 @@ print("Parsing dump...")
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
 print("Checking local pages...")
 gen = (pywikibot.Page(site, p.title) for p in dump_parsed if report_problem(p))
-print("Creating generator...")
-gen = pagegenerators.PreloadingGenerator(gen)
 
 def treat_page(page, save):
     pageSplit = page.text.splitlines()
