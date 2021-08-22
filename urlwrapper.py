@@ -7,7 +7,17 @@ site.login()
 dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x and x.endswith(".bz2") and not "multistream" in x and os.path.isfile(os.path.join("/public/dumps/public/enwiki/latest", x))])
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
 
+def main():
+    """The main bot loop: Runs through the dump and treats pages that need treating."""
+    for p in dump_parsed:
+        if report_problem(p) is True:
+            p = pywikibot.Page(site, p.title)
+            if p.namespace().id is 0 and report_problem(p) is True:
+                    treat_page(p, False)
+            time.sleep(1)
+
 def report_problem(page):
+    """Checks if a page needs treating."""
     problem = False
     pageSplit = page.text.splitlines()
     for line in pageSplit:
@@ -41,20 +51,18 @@ def treat_page(page, save):
             print("Would have saved to " + page.title())
 
 def not_edge_case(line):
+    """Check if treating the page might break something."""
     if "|website=" in line.replace(" ", "") and not "*" in line and not "{{" in line and not "[" in line and not "<!--" in line and not "<ref>" in line and not "</ref>" in line and not "url=" in line and "http" in line:
         return True
     else:
         return False
 
 def incompatible(line):
+    """Check if the page uses infoboxes incompatible with the URL template."""
     if "{{infobox television" in line.lower():
         return True
     else:
         return False
 
-for p in dump_parsed:
-    if report_problem(p) is True:
-        p = pywikibot.Page(site, p.title)
-        if p.namespace().id is 0 and report_problem(p) is True:
-                treat_page(p, False)
-        time.sleep(1)
+if __name__ == "__main__":
+    main()
