@@ -39,6 +39,7 @@ def treat_page(page, save):
             print("Would have saved to " + page.title())
 
 print("Starting...")
+print(gen)
 for page in gen:
     print("Checking " + page.title())
     if report_problem(page) is True:
