@@ -41,7 +41,7 @@ for p in dump_parsed:
     if report_problem(p) is True:
         print("Checking " + p.title + " online...")
         p = pywikibot.Page(site, p.title)
-        if p.namespace is 0 and report_problem(p) is True:
+        if p.namespace is "MAIN" and report_problem(p) is True:
             print("Treating " + p.title())
             treat_page(p, False)
             time.sleep(1)
