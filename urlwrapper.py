@@ -12,9 +12,11 @@ def report_problem(page):
     for line in pageSplit:
         print(line)
         if "website" in line and not "{{" in line and not "[" in line and "http" in line:
-            return True
-        else:
-            return False
+            problem = True
+    if problem is True:
+        return True
+    else:
+        return False
 
 dump_file = "/public/dumps/public/enwiki/latest/" + random.choice([x for x in os.listdir("/public/dumps/public/enwiki/latest") if "-pages-articles" in x and x.endswith(".bz2") and not "multistream" in x and os.path.isfile(os.path.join("/public/dumps/public/enwiki/latest", x))])
 dump_parsed = xmlreader.XmlDump(dump_file).parse()
