@@ -7,6 +7,7 @@ headers = {
 }
 
 def report_problem(page):
+    problem = False
     pageSplit = page.text.splitlines()
     print(pageSplit)
     for line in pageSplit:
