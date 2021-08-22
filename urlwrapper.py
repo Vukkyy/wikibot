@@ -35,19 +35,13 @@ def treat_page(page, save):
         page.text = "\n".join(pageSplit)
         if save is True:
             page.save("[[Wikipedia:Bots|Bot]]: Wrapping link in URL template")
+            print("Saved to " + page.title())
         else:
             print("Would have saved to " + page.title())
 
 for p in dump_parsed:
     if report_problem(p) is True:
-        print("Checking " + p.title + " online...")
         p = pywikibot.Page(site, p.title)
-        if p.namespace().id is 0:
-            if report_problem(p) is True:
-                print("Treating " + p.title())
+        if p.namespace().id is 0 and report_problem(p) is True:
                 treat_page(p, False)
-            else:
-                print("No problem found on " + p.title())
-        else:
-            print(p.title() + " is not in the main namespace.")
         time.sleep(1)
