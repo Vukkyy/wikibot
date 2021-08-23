@@ -52,7 +52,7 @@ def treat_page(page, save):
 
 def not_edge_case(line):
     """Check if treating the page might break something."""
-    if "|website=" in line.replace(" ", "") and not "*" in line and not "{{" in line and not "[" in line and not "<!--" in line and not "<ref>" in line and not "</ref>" in line and not "url=" in line and "http" in line:
+    if "|website=" in line.replace(" ", "") and not "*" in line and not "{{" in line and not "[" in line and not "<!--" in line and not "<ref>" in line and not "</ref>" in line and not "url=" in line and not "<br>" in line and "http" in line:
         return True
     else:
         return False
