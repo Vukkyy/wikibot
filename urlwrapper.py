@@ -59,7 +59,7 @@ def not_edge_case(line):
 
 def incompatible(line):
     """Check if the page uses infoboxes incompatible with the URL template."""
-    if "{{infobox television" in line.lower():
+    if "{{infobox television" in line.lower() or "{{infobox journal" in line.lower():
         return True
     else:
         return False
